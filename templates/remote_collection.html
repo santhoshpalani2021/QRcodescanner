@@ -1,0 +1,1202 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+</head>
+<body>
+    <h1>Issue Remote</h1>
+    <form action="/remote_collection" method="post">
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" name="remote_id" required>
+        <label for="faculty_name">Faculty Name:</label>
+        <input type="text" name="faculty_name" required>
+        <button type="submit">Issue</button>
+    </form>
+    <br>
+    <a href="/">Back to Remote List</a>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+    <script>
+        function autoSubmit() {
+            let remoteId = document.getElementById("remote_id").value;
+            let facultyName = document.getElementById("faculty_name").value;
+            
+            if (remoteId.trim() !== "" && facultyName.trim() !== "") {
+                document.getElementById("remoteForm").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Issue Remote</h1>
+    <form id="remoteForm" action="/remote_collection" method="post">
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" id="remote_id" name="remote_id" required autofocus oninput="autoSubmit()">
+        
+        <label for="faculty_name">Faculty Name:</label>
+        <input type="text" id="faculty_name" name="faculty_name" required oninput="autoSubmit()">
+    </form>
+    
+    <br>
+    <a href="/">Back to Remote List</a>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+    <script>
+        function autoSubmit() {
+            let remoteId = document.getElementById("remote_id").value;
+            let facultyName = document.getElementById("faculty_name").value;
+            
+            if (remoteId.trim() !== "" && facultyName.trim() !== "") {
+                document.getElementById("remoteForm").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Issue Remote</h1>
+    <form id="remoteForm" action="/remote_collection" method="post">
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" id="remote_id" name="remote_id" required autofocus oninput="autoSubmit()">
+        
+        <label for="faculty_name">Faculty Name:</label>
+        <input type="text" id="faculty_name" name="faculty_name" required oninput="autoSubmit()">
+    </form>
+    
+    <br>
+    <a href="/">Back to Remote List</a>
+
+     <!Display the table with the remotes issued -->
+    <!--<h2>Issued Remotes</h2>
+    {% if remotes %}
+        <table border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>Remote ID</th>
+                    <th>Faculty Name</th>
+                    <th>Date of Issue</th>
+                    <th>Time of Issue</th>
+                    <th>Return Status</th>
+                    <th>Date of Return</th>
+                    <th>Time of Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for remote in remotes %}
+                    <tr>
+                        <td>{{ remote['Remote ID'] }}</td>
+                        <td>{{ remote['Faculty Name'] }}</td>
+                        <td>{{ remote['Date of Issue'] }}</td>
+                        <td>{{ remote['Time of Issue'] }}</td>
+                        <td>{{ remote['Return Status'] }}</td>
+                        <td>{{ remote['Date of Return'] }}</td>
+                        <td>{{ remote['Time of Return'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No remotes issued yet.</p>
+    {% endif %}
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+    <style>
+        /* Resetting basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            padding: 20px;
+            background-image: url('https://media.glassdoor.com/l/0a/75/c1/a7/college.jpg?signature=002bb839dfd132886a71377684599b3968b40441e7eebdbdba28184f694df758');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Gradient Overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for better readability */
+            z-index: -1;
+        }
+
+        h1, h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for the content area */
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+            color: #2980b9;
+            font-size: 16px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #3498db;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 25px;
+            }
+
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            form {
+                gap: 15px;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script>
+        function autoSubmit() {
+            let facultyName = document.getElementById("faculty_name").value;
+            let remoteId = document.getElementById("remote_id").value;
+            
+            
+            if (remoteId.trim() !== "" && facultyName.trim() !== "") {
+                document.getElementById("remoteForm").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Issue Remote</h1>
+        <form id="remoteForm" action="/remote_collection" method="post">
+            <label for="faculty_name">Faculty Name:</label>
+            <input type="text" id="faculty_name" name="faculty_name" required autofocus oninput="autoSubmit()">
+            <label for="remote_id">Remote ID:</label>
+            <input type="text" id="remote_id" name="remote_id" required  oninput="autoSubmit()">
+            
+            
+        </form>
+
+        <a href="/">Back to Remote List</a>
+
+        <h2>Issued Remotes</h2>
+        {% if remotes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Faculty Name</th>
+                        <th>Remote ID</th>
+                        <th>Return Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for remote in remotes %}
+                        <tr>
+                            <td>{{ remote['Faculty Name'] }}</td>
+                            <td>{{ remote['Remote ID'] }}</td>
+                            <td>{{ remote['Return Status'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No remotes issued yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+    <style>
+        /* Resetting basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            padding: 20px;
+            background-image: url('https://media.glassdoor.com/l/0a/75/c1/a7/college.jpg?signature=002bb839dfd132886a71377684599b3968b40441e7eebdbdba28184f694df758');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Gradient Overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for better readability */
+            z-index: -1;
+        }
+
+        h1, h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for the content area */
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+            color: #2980b9;
+            font-size: 16px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #3498db;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 25px;
+            }
+
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            form {
+                gap: 15px;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script>
+        // Auto-submit the form once both fields are filled
+        function autoSubmit() {
+            let facultyName = document.getElementById("faculty_name").value;
+            let remoteId = document.getElementById("remote_id").value;
+
+            // If both fields are filled, submit the form
+            if (facultyName.trim() !== "" && remoteId.trim() !== "") {
+                document.getElementById("remoteForm").submit();
+            }
+        }
+
+        // Auto-focus on the remote_id after typing in faculty_name
+        function autoFocus() {
+            let facultyName = document.getElementById("faculty_name").value;
+            if (facultyName.trim() !== "") {
+                document.getElementById("remote_id").focus();
+            }
+        }
+
+        // After form submission, focus back to the faculty_name field
+        function resetFocusAfterSubmit(event) {
+            event.preventDefault(); // Prevent immediate form submission for focus reset
+            document.getElementById("faculty_name").focus();
+
+            // Now submit the form after focusing
+            setTimeout(() => {
+                document.getElementById("remoteForm").submit();
+            }, 200);  // Small delay to ensure focus is reset first
+        }
+
+        // Attach the focus event and submission handler
+        window.onload = function() {
+            // Set focus on faculty_name when the page loads
+            document.getElementById("faculty_name").focus();
+
+            // Attach input event listeners to handle focus and auto-submit
+            document.getElementById("faculty_name").addEventListener("input", function() {
+                autoFocus();
+            });
+
+            document.getElementById("remoteForm").addEventListener("submit", function(event) {
+                resetFocusAfterSubmit(event);
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Issue Remote</h1>
+        <form id="remoteForm" action="/remote_collection" method="post">
+            <label for="faculty_name">Faculty Name:</label>
+            <input type="text" id="faculty_name" name="faculty_name" required autofocus oninput="autoSubmit()">
+            <label for="remote_id">Remote ID:</label>
+            <input type="text" id="remote_id" name="remote_id" required oninput="autoSubmit()">
+        </form>
+
+        <a href="/">Back to Remote List</a>
+
+        <h2>Issued Remotes</h2>
+        {% if remotes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Faculty Name</th>
+                        <th>Remote ID</th>
+                        <th>Return Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for remote in remotes %}
+                        <tr>
+                            <td>{{ remote['Faculty Name'] }}</td>
+                            <td>{{ remote['Remote ID'] }}</td>
+                            <td>{{ remote['Return Status'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No remotes issued yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+    <style>
+        /* Resetting basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            padding: 20px;
+            background-image: url('https://media.glassdoor.com/l/0a/75/c1/a7/college.jpg?signature=002bb839dfd132886a71377684599b3968b40441e7eebdbdba28184f694df758');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Gradient Overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        h1, h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+            color: #2980b9;
+            font-size: 16px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #3498db;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 25px;
+            }
+
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            form {
+                gap: 15px;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let facultyField = document.getElementById("faculty_name");
+            let remoteField = document.getElementById("remote_id");
+
+            // Focus on faculty name field when page loads
+            facultyField.focus();
+
+            facultyField.addEventListener("input", function () {
+                if (facultyField.value.trim() !== "") {
+                    remoteField.focus();
+                }
+            });
+
+            remoteField.addEventListener("input", function () {
+                if (facultyField.value.trim() !== "" && remoteField.value.trim() !== "") {
+                    document.getElementById("remoteForm").submit();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Issue Remote</h1>
+        <form id="remoteForm" action="/remote_collection" method="post">
+            <label for="faculty_name">Faculty Name:</label>
+            <input type="text" id="faculty_name" name="faculty_name" required autofocus>
+
+            <label for="remote_id">Remote ID:</label>
+            <input type="text" id="remote_id" name="remote_id" required autofocus>
+
+        </form>
+
+        <a href="/">Back to Remote List</a>
+
+        <h2>Issued Remotes</h2>
+        {% if remotes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Faculty Name</th>
+                        <th>Remote ID</th>
+                        <th>Return Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for remote in remotes %}
+                        <tr>
+                            <td>{{ remote['Faculty Name'] }}</td>
+                            <td>{{ remote['Remote ID'] }}</td>
+                            <td>{{ remote['Return Status'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No remotes issued yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+</head>
+<body>
+    <h1>Issue Remote</h1>
+    <form action="/remote_collection" method="post">
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" name="remote_id" required>
+        <label for="faculty_name">Faculty Name:</label>
+        <input type="text" name="faculty_name" required>
+        <button type="submit">Issue</button>
+    </form>
+    <br>
+    <a href="/">Back to Remote List</a>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let facultyField = document.getElementById("faculty_name");
+            let remoteField = document.getElementById("remote_id");
+            let form = document.getElementById("remoteForm");
+
+            // Focus on faculty name field when page loads
+            facultyField.focus();
+
+            facultyField.addEventListener("change", function () {
+                if (facultyField.value.trim() !== "") {
+                    remoteField.focus();
+                }
+            });
+
+            remoteField.addEventListener("input", function () {
+                if (facultyField.value.trim() !== "" && remoteField.value.trim() !== "") {
+                    form.submit();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Issue Remote</h1>
+    <form id="remoteForm" action="/remote_collection" method="post">
+        <label for="faculty_name">Faculty Name:</label>
+        <input type="text" id="faculty_name" name="faculty_name" required autofocus>
+        
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" id="remote_id" name="remote_id" required>
+    </form>
+    <br>
+    <a href="/">Back to Remote List</a>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Collection</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let facultyField = document.getElementById("faculty_name");
+            let remoteField = document.getElementById("remote_id");
+            let form = document.getElementById("remoteForm");
+            let timeout = null;
+
+            // Focus on faculty name field when page loads
+            facultyField.focus();
+
+            facultyField.addEventListener("change", function () {
+                if (facultyField.value.trim() !== "") {
+                    remoteField.focus();
+                }
+            });
+
+            remoteField.addEventListener("input", function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    if (facultyField.value.trim() !== "" && remoteField.value.trim() !== "") {
+                        form.submit();
+                    }
+                }, 500); // Delay submission to ensure full input is captured
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Issue Remote</h1>
+    <form id="remoteForm" action="/remote_collection" method="post">
+        <label for="faculty_name">Faculty Name:</label>
+        <input type="text" id="faculty_name" name="faculty_name" required autofocus>
+        
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" id="remote_id" name="remote_id" required>
+    </form>
+    <br>
+    <a href="/">Back to Remote List</a>
+</body>
+</html>
+
+
+
+-->
+
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Remote Collection</title>
+
+        <style>
+            /* Resetting basic styles */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Arial', sans-serif;
+                color: #333;
+                padding: 20px;
+                background-image: url('https://media.glassdoor.com/l/0a/75/c1/a7/college.jpg?signature=002bb839dfd132886a71377684599b3968b40441e7eebdbdba28184f694df758');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+
+            /* Gradient Overlay */
+            body::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: -1;
+            }
+
+            h1, h2 {
+                color: #fff;
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 2rem;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 40px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            label {
+                font-size: 16px;
+                font-weight: bold;
+                color: #ffefef;
+            }
+
+            input[type="text"] {
+                width: 200px;
+                padding: 12px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                outline: none;
+                transition: border-color 0.3s ease;
+                background-color: #f9f9f9;
+            }
+
+            input[type="text"]:focus {
+                border-color: #2980b9;
+            }
+
+            button {
+                padding: 15px 30px;
+                font-size: 18px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            button:hover {
+                background-color: #3498db;
+                transform: translateY(-2px);
+            }
+
+            a {
+                display: inline-block;
+                margin-top: 20px;
+                text-align: center;
+                color: #c8d0d6;
+                font-size: 20px;
+                text-decoration: none;
+                transition: color 0.3s ease;
+                font-weight: 30px;
+            }
+
+            a:hover {
+                color: #3498db;
+            }
+
+            /* Table styling */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 30px;
+                background-color: rgb(180, 176, 176);
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #2980b9;
+                color: #fff;
+            }
+
+            tr:hover {
+                background-color: #3c3838;
+            }
+
+            td
+            {
+                color: rgb(255, 255, 255);
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                body {
+                    padding: 15px;
+                }
+
+                .container {
+                    padding: 25px;
+                }
+
+                h1, h2 {
+                    font-size: 1.5rem;
+                }
+
+                form {
+                    gap: 15px;
+                }
+
+                input[type="text"] {
+                    padding: 10px;
+                }
+
+                button {
+                    padding: 12px 20px;
+                    font-size: 16px;
+                }
+
+                table {
+                    font-size: 14px;
+                }
+            }
+        </style>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let facultyField = document.getElementById("faculty_name");
+                let remoteField = document.getElementById("remote_id");
+                let form = document.getElementById("remoteForm");
+                let timeout = null;
+
+                // Focus on faculty name field when page loads
+                facultyField.focus();
+
+                facultyField.addEventListener("input", function () {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => {
+                        if (facultyField.value.trim() !== "") {
+                            remoteField.focus();
+                        }
+                    }, 500); // Ensure full faculty name is captured before moving focus
+                });
+
+                remoteField.addEventListener("input", function () {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => {
+                        if (facultyField.value.trim() !== "" && remoteField.value.trim() !== "") {
+                            form.submit();
+                        }
+                    }, 500); // Delay submission to ensure full input is captured
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Issue Remote</h1>
+        <form id="remoteForm" action="/remote_collection" method="post">
+            <label for="faculty_name">Faculty Id:</label>
+            <input type="text" id="faculty_name" name="faculty_name" required autofocus>
+            
+            <label for="remote_id">Remote ID:</label>
+            <input type="text" id="remote_id" name="remote_id" required>
+            
+        </form>
+        <br>
+        <a href="/">Back to Remote List</a>           <a href="remote_return" style="margin-left: 70px;">Back to Remote Return</a>
+        <h2>Issued Remotes</h2>
+        {% if remotes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Faculty Name</th>
+                        <th>Remote ID</th>
+                        <th>Return Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for remote in remotes %}
+                        <tr>
+                            <td>{{ remote['Faculty Name'] }}</td>
+                            <td>{{ remote['Remote ID'] }}</td>
+                            <td>{{ remote['Return Status'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No remotes issued yet.</p>
+        {% endif %}
+    </body>
+    </html>

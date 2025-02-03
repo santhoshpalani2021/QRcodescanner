@@ -1,0 +1,273 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Return</title>
+</head>
+<body>
+    <h1>Return Remote</h1>
+    <form action="/remote_return" method="post">
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" name="remote_id" required>
+        <button type="submit">Return</button>
+    </form>
+    <br>
+    <a href="/">Back to Remote List</a>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Return</title>
+    <script>
+        function autoSubmit() {
+            let remoteId = document.getElementById("remote_id").value;
+            
+            if (remoteId.trim() !== "") {
+                document.getElementById("returnForm").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Return Remote</h1>
+    <form id="returnForm" action="/remote_return" method="post">
+        <label for="remote_id">Remote ID:</label>
+        <input type="text" id="remote_id" name="remote_id" required autofocus oninput="autoSubmit()">
+    </form>
+    
+    <br>
+    <a href="/">Back to Remote List</a>
+</body>
+</html>
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Return</title>
+    <style>
+        /* Resetting basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            padding: 20px;
+            background-image: url('https://i.pinimg.com/736x/fb/b6/8d/fbb68d2df46354d916d45a6e6d35dbe7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Gradient Overlay for Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: -1;
+        }
+
+        /* Header Styling */
+        h1, h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.85); /* Slight transparency for the content */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Link Styling */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+            color: #2980b9;
+            font-size: 16px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #3498db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 25px;
+            }
+
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            form {
+                gap: 15px;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px 20px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script>
+        function autoSubmit() {
+            let remoteId = document.getElementById("remote_id").value.trim();
+            
+            if (remoteId.trim() !== "") {
+                document.getElementById("returnForm").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Return Remote</h1>
+
+        <!-- Return remote form -->
+      
+        <form id="returnForm" action="/remote_return" method="post">
+            <label for="remote_id">Remote ID:</label>
+            <input type="text" id="remote_id" name="remote_id" required autofocus oninput="autoSubmit()">
+        </form>
+
+        <h2>Available Remotes to Return</h2>
+        {% if remotes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Remote ID</th>
+                        <th>Faculty Name</th>
+                        <th>Date of Issue</th>
+                        <th>Time of Issue</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for remote in remotes %}
+                        <tr>
+                            <td>{{ remote['Remote ID'] }}</td>
+                            <td>{{ remote['Faculty Name'] }}</td>
+                            <td>{{ remote['Date of Issue'] }}</td>
+                            <td>{{ remote['Time of Issue'] }}</td>
+                            <td>{{ remote['Return Status'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No remotes available to return.</p>
+        {% endif %}
+
+        <br>
+        <a href="/">Back to Remote List</a>          <a href="remote_collection" style="margin-left: 70px;">Back to Remote Collection</a>
+    </div>
+</body>
+</html>
